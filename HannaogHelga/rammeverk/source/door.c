@@ -12,7 +12,7 @@ void wait(int seconds){
 
 void open_door(){
   if(elev_get_floor_sensor_signal && motor_speed==0){
-    elev_set_door_open_lamp(1); // hvordan setter vi denne i kun 3 sekunder?
+    elev_set_door_open_lamp(1);
     wait(timer_open_door);
     elev_set_door_open_lamp(0);
   }
