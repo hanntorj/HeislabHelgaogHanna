@@ -17,24 +17,39 @@ void delete_order(int floor){
     queue[floor][i]=0;
   }
 }
+void delete_ all_orders(){
+  for(int i=0; i<N_FLOORS; i++){
+    delete_order(i);
+  }
+}
 
-int give_instructions(int floor, elev_motor_direction_t direction){
-  if (direction=DIRN_UP){
+bool has_orders(void){
+
+  for(int i=0; i<N_FLOORS; i++){
+    for (int j=0; j<3; j++){
+      if (queue[i][j]==1){
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+int give_instructions(int floor, elev_motor_direction_t& direction){
+  else if (direction==DIRN_UP){
     for (int i=floor; i<3; i++){
         if(queue[i][0]=1 || queue[i][2]){
           return i;
         }
+        else {direction=DIRN_DOWN}
+
     }
   }
-  else if (direction=DIRN_DOWN){
+  else if (direction==DIRN_DOWN){
     for (int i=floor; i>0; i--){
         if(queue[i][1]=1 || queue[i][2]){
           return i;
         }
     }
+     else {direction=DIRN_DOWN}
   }
-  else if (direction=DIRN_STOP){
-    //skriv ferdig
-
-  }
-}
