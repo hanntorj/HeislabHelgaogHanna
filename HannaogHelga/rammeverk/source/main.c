@@ -4,17 +4,23 @@
 
 
 int main() {
-  printf("(main) calling init()\n");
-
-  while(1){
-
-    FSM();
-  }
-
-
-
+    if (!elev_init()) {
+         printf("Unable to initialize elevator hardware!\n");
+         return 1;
+     }
+     elev_state_t state = INIT;
+     while(1){
+         state = FSM(state);
+         // Stop elevator and exit program if the stop button is pressed
+         if (elev_get_stop_signal()) {
+             elev_set_motor_direction(DIRN_STOP);
+             break;
+         }
+    }
+    return 0;
+}
   // Initialize hardware
-   /*if (!elev_init()) {
+ /* if (!elev_init()) {
         printf("Unable to initialize elevator hardware!\n");
         return 1;
     }
@@ -39,5 +45,3 @@ int main() {
         }
     }
 */
-    return 0;
-}

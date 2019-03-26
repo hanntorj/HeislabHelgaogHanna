@@ -1,13 +1,13 @@
 #include "control.h"
 
 void new_order(elev_button_type_t button,int floor_requested){
-  if (button=BUTTON_CALL_UP){
+  if (button==BUTTON_CALL_UP){
   queue[floor_requested][0]=1;
   }
-  else if (button=BUTTON_CALL_DOWN){
+  else if (button==BUTTON_CALL_DOWN){
   queue[floor_requested][1]=1;
   }
-  else if (button=BUTTON_COMMAND){
+  else if (button==BUTTON_COMMAND){
   queue[floor_requested][2]=1;
   }
 }
@@ -17,39 +17,91 @@ void delete_order(int floor){
     queue[floor][i]=0;
   }
 }
-void delete_ all_orders(){
+
+void delete_all_orders(){
   for(int i=0; i<N_FLOORS; i++){
     delete_order(i);
   }
 }
 
-bool has_orders(void){
-
+int has_orders(void){
   for(int i=0; i<N_FLOORS; i++){
     for (int j=0; j<3; j++){
       if (queue[i][j]==1){
-        return true;
+        return 1;
       }
     }
   }
-  return false;
+  return 0;
 }
 
-int give_instructions(int floor, elev_motor_direction_t& direction){
-  else if (direction==DIRN_UP){
-    for (int i=floor; i<3; i++){
-        if(queue[i][0]=1 || queue[i][2]){
+// has CheckOrdersAbove
+// etg curr-N med bestilliung
+// -1 om ingen bestilling
+int has_orders_above(int current_floor){
+    for (int i=current_floor; i<N_FLOORS; i++){
+        if(queue[i][0] || queue[i][2]){
           return i;
         }
-        else {direction=DIRN_DOWN}
+    }
+    for (int i=current_floor; i<N_FLOORS; i++){
+        if(queue[i][1]){
+          return i;
+        }
+    }
+    return -1;
+}
 
-    }
-  }
-  else if (direction==DIRN_DOWN){
-    for (int i=floor; i>0; i--){
-        if(queue[i][1]=1 || queue[i][2]){
+// has orders below
+int has_orders_below(int current_floor){
+    for (int i=current_floor; i>=0; i--){
+        if(queue[i][1] || queue[i][2]){
           return i;
         }
     }
-     else {direction=DIRN_DOWN}
-  }
+    for (int i=current_floor; i>=0; i--){
+        if(queue[i][0]){
+          return i;
+        }
+    }
+    return -1;
+}
+
+// get nextFloor
+int get_next_floor(int current_floor, elev_motor_direction_t direction){
+    int floor=-1;
+    while (has_orders()){
+        if (direction==DIRN_UP){
+            floor=has_orders_above(current_floor);
+            if (floor==-1){
+                floor=has_orders_below(current_floor);
+            }
+        }
+        else if (direction==DIRN_DOWN){
+            floor=has_orders_below(current_floor);
+            if (floor==-1){
+                floor=has_orders_above(current_floor);
+            }
+        }
+    }
+    return floor;
+    // if dir = opp
+        // sjekke om bestilling over meg // først opp/cab deretter evt. ned
+        // sjekke om bestilling under meg // først ned/cab derretter evt. opp
+
+    // if dir = ned
+        // sjekke om bestilling under meg // først ned/cab derretter evt. opp
+        // sjekke om bestilling over meg // først opp/cab deretter evt. ned
+    //
+}
+
+int get_next_instructions(int current_floor, elev_motor_direction_t direction){
+    int floor = get_next_floor(current_floor, direction);
+    if(floor<current_floor){
+        direction=DIRN_DOWN;
+    }
+    else{
+        direction=DIRN_UP;
+    }
+    return floor;
+}
