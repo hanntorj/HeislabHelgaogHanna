@@ -1,8 +1,7 @@
 #include "state.h"
-#include "elev.h"
-#include "control.h"
 
 elev_motor_direction_t direction;
+int current_floor;
 
 void state_init(){
   current_floor = elev_get_floor_sensor_signal();
@@ -20,17 +19,27 @@ elev_motor_direction_t get_direction(){
     return direction;
 }
 
+int get_current_floor() {
+  return current_floor;
+}
+void set_direction(elev_motor_direction_t direction_rhs){
+  direction= direction_rhs;
+}
+
+void set_current_floor(int current_floor_rhs){
+  current_floor = current_floor_rhs;
+}
+
+
 /*stille(){
 hvis floor er -1 gå til case stå stille
 hvis floor !=-1 gå til case RUNNING
 }
 */
 elev_state_t state_no_orders(int current_floor, elev_motor_direction_t direction, elev_state_t state){
-
-    int floor = get_next_instructions(current_floor, get_direction());
+    int floor = get_next_instructions(get_current_floor(), get_direction()); //spørr om det er nødvendig med get her
     if (floor!=-1){
         state=RUNNING;
-        printf("Floor is %d\n", floor);
     }
     else{
         state=NO_ORDERS;
@@ -61,10 +70,13 @@ elev_state_t FSM(elev_state_t state){
       state = NO_ORDERS;
     case NO_ORDERS:
         state = state_no_orders(current_floor, direction, state);//klarer ikke å komme over til RUNNING. Når vi printer state er den 2 aka RUNNING så skjønner ikke. det må være noe feil med køen vår
-        break;
+        state=OPEN_DOOR;
+break;
     case RUNNING:
+      printf("RUNNING initialized");
       break;
     case OPEN_DOOR:
+    open_door();
       break;
     case STOP_BUTTON_PRESSED:
       break;

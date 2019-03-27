@@ -1,4 +1,6 @@
 #include "elev.h"
+#include "control.h"
+#include "door.h"
 #include <stdio.h>
 
 
@@ -10,9 +12,13 @@ typedef enum tag_elev_state{
   STOP_BUTTON_PRESSED
 } elev_state_t;
 
-int current_floor;
+
 
 elev_motor_direction_t get_direction();
+void set_direction(elev_motor_direction_t direction_rhs);
+
+int get_current_floor();
+void set_current_floor(int current_floor_rhs);
 
 //int stop_button= elev_get_stop_signal();
 

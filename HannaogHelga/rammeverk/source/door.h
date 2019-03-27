@@ -1,5 +1,4 @@
-int timer_open_door = 3;
-bool door_is_open{0};
+//#include "state.h"
 
 void wait(int seconds);
 void open_door();

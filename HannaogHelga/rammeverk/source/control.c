@@ -1,14 +1,18 @@
 #include "control.h"
 
-void new_order(elev_button_type_t button,int floor_requested){
-  if (button==BUTTON_CALL_UP){
-  queue[floor_requested][0]=1;
-  }
-  else if (button==BUTTON_CALL_DOWN){
-  queue[floor_requested][1]=1;
-  }
-  else if (button==BUTTON_COMMAND){
-  queue[floor_requested][2]=1;
+int queue[N_FLOORS][3];
+elev_button_type_t button;
+
+
+
+
+void new_order(elev_button_type_t button){ //wtf hjelp!! 
+  int floor_requested=-1;
+  for(int i=0; i<N_FLOORS; i++){
+    if(elev_get_button_signal(button, i)!=queue[i][button]){
+      floor_requested = i;
+      queue[floor_requested][button]=1;
+    }
   }
 }
 
@@ -70,6 +74,8 @@ int has_orders_below(int current_floor){
 // get nextFloor
 int get_next_floor(int current_floor, elev_motor_direction_t direction){
     int floor=-1;
+    //printf("Floor is %d\n", floor);
+    printf("Has orders: %d\n", has_orders());
     while (has_orders()){
         if (direction==DIRN_UP){
             floor=has_orders_above(current_floor);

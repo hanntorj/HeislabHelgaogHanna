@@ -3,12 +3,11 @@
 * @brief Dette er køkontrolløren vår.
 */
 #include "elev.h"
+#include "stdio.h"
 
-int queue[N_FLOORS][3];
-elev_button_type_t button;
-int floor_requested;
 
-void new_order(elev_button_type_t button,int floor_requested);
+
+void new_order(elev_button_type_t button);
 void delete_order(int floor);
 void delete_all_orders();
 int has_orders(void);
