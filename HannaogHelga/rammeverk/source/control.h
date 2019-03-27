@@ -7,7 +7,7 @@
 
 
 
-void new_order(elev_button_type_t button);
+void new_order();
 void delete_order(int floor);
 void delete_all_orders();
 int has_orders(void);

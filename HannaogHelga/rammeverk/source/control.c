@@ -6,9 +6,20 @@ elev_button_type_t button;
 
 
 
-void new_order(elev_button_type_t button){ //wtf hjelp!!
+void new_order(){ //wtf hjelp!!
   for(int i=0; i<N_FLOORS; i++){
-    if(elev_get_button_signal(button, i)!=queue[i][button]){
+    queue[i][0]=elev_get_button_signal(BUTTON_CALL_UP, i);
+    queue[i][1]=elev_get_button_signal(BUTTON_CALL_DOWN,i);
+    queue[i][2]=elev_get_button_signal(BUTTON_COMMAND, i);
+  }
+  for(int i=0; i<N_FLOORS; i++){
+    for (int j=0; j<3; j++){
+  printf("%d ", queue[i][j]);
+}
+printf("\n");
+}
+}
+/*    if(elev_get_button_signal(button, i)!=queue[i][button]){
       queue[i][button]=1;
     }
     for(int i=0; i<N_FLOORS; i++){
@@ -18,8 +29,8 @@ void new_order(elev_button_type_t button){ //wtf hjelp!!
       printf("\n");
 
   }
-}
-}
+}*/
+
 void delete_order(int floor){
   for (int i=0; i<3; i++) {
     queue[floor][i]=0;
@@ -79,7 +90,6 @@ int has_orders_below(int current_floor){
 int get_next_floor(int current_floor, elev_motor_direction_t direction){
     int floor=-1;
     //printf("Floor is %d\n", floor);
-    printf("Has orders: %d\n", has_orders());
     while (has_orders()){
         if (direction==DIRN_UP){
             floor=has_orders_above(current_floor);
