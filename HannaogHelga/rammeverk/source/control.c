@@ -6,16 +6,20 @@ elev_button_type_t button;
 
 
 
-void new_order(elev_button_type_t button){ //wtf hjelp!! 
-  int floor_requested=-1;
+void new_order(elev_button_type_t button){ //wtf hjelp!!
   for(int i=0; i<N_FLOORS; i++){
     if(elev_get_button_signal(button, i)!=queue[i][button]){
-      floor_requested = i;
-      queue[floor_requested][button]=1;
+      queue[i][button]=1;
     }
+    for(int i=0; i<N_FLOORS; i++){
+      for (int j=0; j<3; j++){
+        printf("Queue value: %d\n", queue[i][j]);
+      }
+      printf("\n");
+
   }
 }
-
+}
 void delete_order(int floor){
   for (int i=0; i<3; i++) {
     queue[floor][i]=0;

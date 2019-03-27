@@ -76,7 +76,6 @@ break;
       printf("RUNNING initialized");
       break;
     case OPEN_DOOR:
-    open_door();
       break;
     case STOP_BUTTON_PRESSED:
       break;
