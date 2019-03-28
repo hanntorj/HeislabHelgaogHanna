@@ -24,6 +24,6 @@ void set_current_floor();
 
 void state_init();
 
-int run();
+int go_to_target_floor();
 
 elev_state_t FSM(elev_state_t state);

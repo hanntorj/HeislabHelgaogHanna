@@ -1,6 +1,5 @@
+//#include "state.h"
 
-
-/*elev_button_type_t button;
-int floor_requested;*/
-
-void set_light_floor_indicator(...);
+void timer();
+void open_door();
+void stop_button_while_in_floor();

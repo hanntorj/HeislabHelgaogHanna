@@ -31,7 +31,7 @@ void set_current_floor(){
   elev_set_floor_indicator(current_floor);
 }
 
-int run(){
+int go_to_target_floor(){
   int target_floor = get_next_floor(current_floor, direction);
   direction = get_next_direction(current_floor, target_floor);
   elev_set_motor_direction(direction);
@@ -62,25 +62,48 @@ elev_state_t FSM(elev_state_t state){
   new_order();
   switch(state){
     case INIT:
+    //må lage noe som ignorerer nye forsøk på bestillinger
       state_init();
       state = NO_ORDERS;
     case NO_ORDERS:
       if (has_orders()){
-      state = RUNNING;}
+        state = RUNNING;}
+      if(elev_get_stop_signal()){
+        state= STOP_BUTTON_PRESSED;
+      }
       break;
     case RUNNING:
-    //gå til case  stop
-      if (run()){
+      if(elev_get_stop_signal()){
+        state=STOP_BUTTON_PRESSED;
+      }
+      if (go_to_target_floor()){
       state=OPEN_DOOR;
       }
       break;
     case OPEN_DOOR:
-      open_door();
+      open_door(); //antar at dette skjer først, dvs døren lukkes før den går videre. Test dette!
       delete_order(current_floor);
-      //...hvilken caase den skal til
+      if(elev_get_stop_signal()){
+        state=STOP_BUTTON_PRESSED;
+      }
+      else if(has_orders()){
+        state=RUNNING;
+      }
+      else{
+        state= NO_ORDERS;
+      }
       break;
     case STOP_BUTTON_PRESSED:
-    
+    elev_set_motor_direction(DIRN_STOP);
+      while(elev_get_stop_signal){
+        delete_all_orders();//køen slettes
+        if(get_current_floor!=-1){//sjekk om i etg, isåfall åpen dør konstant
+          stop_button_while_in_floor();
+      }
+      //gå til neste state
+      if(new_order()){
+        state=RUNNING;
+      }
       break;
 
 
