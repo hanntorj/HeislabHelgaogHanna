@@ -26,18 +26,21 @@ void set_direction(elev_motor_direction_t direction_rhs){
   direction= direction_rhs;
 }
 
-void set_current_floor(int current_floor_rhs){
-  current_floor = current_floor_rhs;
+void set_current_floor(){
+  current_floor = elev_get_floor_sensor_signal();
   elev_set_floor_indicator(current_floor);
 }
 
-
-/*stille(){
-hvis floor er -1 gå til case stå stille
-hvis floor !=-1 gå til case RUNNING
+int run(){
+  int target_floor = get_next_floor(current_floor, direction);
+  direction = get_next_direction(current_floor, target_floor);
+  elev_set_motor_direction(direction);
+  if (target_floor == current_floor){
+    elev_set_motor_direction(DIRN_STOP);
+    return 1;
+  }
+  return 0;
 }
-*/
-
 
 /*kjør(){
     les hvilken etg vi skal til og sett retning med funksjonen instuksjon...
@@ -55,26 +58,32 @@ gå til ny case
 */
 
 elev_state_t FSM(elev_state_t state){
+  set_current_floor();
+  new_order();
   switch(state){
     case INIT:
       state_init();
       state = NO_ORDERS;
     case NO_ORDERS:
-      //new_order();
-      //if (has_orders()){
-      //state = //klarer ikke å komme over til RUNNING. Når vi printer state er den 2 aka RUNNING så skjønner ikke. det må være noe feil med køen vår
-      state = RUNNING;
+      if (has_orders()){
+      state = RUNNING;}
       break;
     case RUNNING:
-      set_current_floor(current_floor);
+    //gå til case  stop
+      if (run()){
+      state=OPEN_DOOR;
+      }
       break;
     case OPEN_DOOR:
       open_door();
       delete_order(current_floor);
-      ...hvilken caase den skal til
+      //...hvilken caase den skal til
       break;
     case STOP_BUTTON_PRESSED:
+    
       break;
-  }
-  return state;
+
+
+}
+return state;
 }

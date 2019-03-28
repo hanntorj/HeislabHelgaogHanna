@@ -6,30 +6,20 @@ elev_button_type_t button;
 
 
 
-void new_order(){ //wtf hjelp!!
+void new_order(){
   for(int i=0; i<N_FLOORS; i++){
-    queue[i][0]=elev_get_button_signal(BUTTON_CALL_UP, i);
-    queue[i][1]=elev_get_button_signal(BUTTON_CALL_DOWN,i);
-    queue[i][2]=elev_get_button_signal(BUTTON_COMMAND, i);
-  }
-  for(int i=0; i<N_FLOORS; i++){
-    for (int j=0; j<3; j++){
-  printf("%d ", queue[i][j]);
-}
-printf("\n");
-}
-}
-/*    if(elev_get_button_signal(button, i)!=queue[i][button]){
-      queue[i][button]=1;
+    if ((i!=N_FLOORS-1) && elev_get_button_signal(BUTTON_CALL_UP, i)){
+      queue[i][0]=1;
     }
-    for(int i=0; i<N_FLOORS; i++){
-      for (int j=0; j<3; j++){
-        printf("Queue value: %d\n", queue[i][j]);
-      }
-      printf("\n");
-
+    if ((i!=0) && elev_get_button_signal(BUTTON_CALL_DOWN, i)){
+      queue[i][1]=1;
+    }
+    if (elev_get_button_signal(BUTTON_COMMAND, i)){
+      queue[i][2]=1;
+    }
   }
-}*/
+}
+
 
 void delete_order(int floor){
   for (int i=0; i<3; i++) {
@@ -86,25 +76,23 @@ int has_orders_below(int current_floor){
     return -1;
 }
 
-// get nextFloor
 int get_next_floor(int current_floor, elev_motor_direction_t direction){
-    int floor=-1;
-    //printf("Floor is %d\n", floor);
+    int target_floor=-1;
     while (has_orders()){
         if (direction==DIRN_UP){
-            floor=has_orders_above(current_floor);
-            if (floor==-1){
-                floor=has_orders_below(current_floor);
+            target_floor=has_orders_above(current_floor);
+            if (target_floor==-1){
+                target_floor=has_orders_below(current_floor);
             }
         }
         else if (direction==DIRN_DOWN){
-            floor=has_orders_below(current_floor);
-            if (floor==-1){
-                floor=has_orders_above(current_floor);
+            target_floor=has_orders_below(current_floor);
+            if (target_floor==-1){
+                target_floor=has_orders_above(current_floor);
             }
         }
     }
-    return floor;
+    return target_floor;
     // if dir = opp
         // sjekke om bestilling over meg // først opp/cab deretter evt. ned
         // sjekke om bestilling under meg // først ned/cab derretter evt. opp
@@ -115,13 +103,11 @@ int get_next_floor(int current_floor, elev_motor_direction_t direction){
     //
 }
 
-int get_next_instructions(int current_floor, elev_motor_direction_t direction){
-    int floor = get_next_floor(current_floor, direction);
-    if(floor<current_floor){
-        direction=DIRN_DOWN;
+elev_motor_direction_t get_next_direction(int current_floor, int target_floor){
+    if(target_floor<current_floor){
+        return DIRN_DOWN;
     }
     else{
-        direction=DIRN_UP;
+        return DIRN_UP;
     }
-    return floor;
 }
