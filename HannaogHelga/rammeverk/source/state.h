@@ -1,6 +1,6 @@
 #include "elev.h"
 #include "control.h"
-#include "door.h"
+#include "utilities.h"
 #include <stdio.h>
 
 
@@ -18,12 +18,14 @@ elev_motor_direction_t get_direction();
 void set_direction(elev_motor_direction_t direction_rhs);
 
 int get_current_floor();
-void set_current_floor();
+void update_current_floor();
 
 //int stop_button= elev_get_stop_signal();
 
-void state_init();
+elev_state_t state_init();
+
+elev_state_t state_no_orders();
 
 int go_to_target_floor();
-
-elev_state_t FSM(elev_state_t state);
+elev_state_t state_open_door();
+void FSM();

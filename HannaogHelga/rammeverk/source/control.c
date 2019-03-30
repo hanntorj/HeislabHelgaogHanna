@@ -18,10 +18,17 @@ void new_order(){
       queue[i][2]=1;
     }
   }
+/*  for(int i=0; i<N_FLOORS; i++){
+    for (int j=0; j<3; j++){
+      printf("%d ", queue[i][j]);
+    }
+    printf("\n");
+
+  }*/
 }
 
 
-void delete_order(int floor){
+void delete_orders_at_floor(int floor){
   for (int i=0; i<3; i++) {
     queue[floor][i]=0;
   }
@@ -29,7 +36,7 @@ void delete_order(int floor){
 
 void delete_all_orders(){
   for(int i=0; i<N_FLOORS; i++){
-    delete_order(i);
+    delete_orders_at_floor(i);
   }
 }
 
@@ -78,14 +85,15 @@ int has_orders_below(int current_floor){
 
 int get_next_floor(int current_floor, elev_motor_direction_t direction){
     int target_floor=-1;
-    while (has_orders()){
+    //while (has_orders()){
+    if(has_orders()){
         if (direction==DIRN_UP){
             target_floor=has_orders_above(current_floor);
             if (target_floor==-1){
                 target_floor=has_orders_below(current_floor);
             }
         }
-        else if (direction==DIRN_DOWN){
+        if (direction==DIRN_DOWN){
             target_floor=has_orders_below(current_floor);
             if (target_floor==-1){
                 target_floor=has_orders_above(current_floor);

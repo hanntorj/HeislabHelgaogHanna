@@ -1,11 +1,11 @@
-#include "state.h" //hjelp er dette lov?
+#include "utilities.h"
 #include "time.h"
 
 int timer_open_door_ms = 30000; //ms
 int door_is_open=0;
 clock_t start_time
 
-int has_time_passed(double delay, clock_t start_time){
+/*int has_time_passed(double delay, clock_t start_time){
 	clock_t clock_ticks_taken = clock() - start_time;
 	double time_in_seconds = clock_ticks_taken/(double) CLOCKS_PER_SEC;
 	if(time_in_seconds>delay){
@@ -14,15 +14,14 @@ int has_time_passed(double delay, clock_t start_time){
 	else{
 		return 0;
 	}
-}
+}*/
 
 void open_door(){
-  if(elev_get_floor_sensor_signal(){
+	printf("open door");
     elev_set_door_open_lamp(1);
-    if(has_time_passed()){
+  /*  if(has_time_passed()){
     elev_set_door_open_lamp(0);
-  }
-  }
+  }*/
 }
 
 void stop_button_while_in_floor(){
