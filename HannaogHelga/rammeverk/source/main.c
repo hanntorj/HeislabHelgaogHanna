@@ -4,14 +4,12 @@
 
 
 int main() {
-  elev_set_stop_lamp(1);
-    elev_set_door_open_lamp(1);
-    if (!elev_init()) {
-         printf("Unable to initialize elevator hardware!\n");
-         return 1;
-     }
-     while(1){
-      FSM();
+  if (!elev_init()) {
+    printf("Unable to initialize elevator hardware!\n");
+    return 1;
+  }
+  while(1){
+    FSM();
          // Stop elevator and exit program if the stop button is pressed
          /*if (elev_get_stop_signal()) {
              elev_set_motor_direction(DIRN_STOP);

@@ -69,19 +69,23 @@ elev_state_t state_running(){
     }
   return RUNNING;
 }
+
 elev_state_t state_open_door(){
-  open_door(); //antar at dette skjer først, dvs døren lukkes før den går videre. Test dette!
+//  open_door();
+  	printf("open door");
+
+ //antar at dette skjer først, dvs døren lukkes før den går videre. Test dette!
   delete_orders_at_floor(current_floor);
   if(elev_get_stop_signal()){
     return  STOP_BUTTON_PRESSED;
   }
   else if(has_orders()){
     return  RUNNING;
-  }
-  else{
+    }
+  else if(!has_orders()){
     return  NO_ORDERS;
   }
-
+  return OPEN_DOOR;
 }
 
 /*kjør(){
@@ -117,8 +121,7 @@ void FSM(){
       state = state_running();
       break;
     case OPEN_DOOR:
-      //printf("open door");
-      printf("%d\n", state);
+    printf("%d \n", state);
       state = state_open_door();
       break;
     case STOP_BUTTON_PRESSED:
