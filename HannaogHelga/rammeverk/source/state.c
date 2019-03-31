@@ -6,9 +6,9 @@ int current_floor;
 elev_state_t state = INIT;
 
 
-int get_current_floor() {
+/*int get_current_floor() {
   return current_floor;
-}
+}*/
 
 void update_current_floor(){
     current_floor = elev_get_floor_sensor_signal();
@@ -16,7 +16,7 @@ void update_current_floor(){
       elev_set_floor_indicator(current_floor);
     }
 }
-
+/*
 elev_motor_direction_t get_direction(){
     return direction;
 }
@@ -24,7 +24,7 @@ elev_motor_direction_t get_direction(){
 void set_direction(elev_motor_direction_t direction_rhs){
   direction= direction_rhs;
 }
-
+*/
 elev_state_t state_init(){
   current_floor = elev_get_floor_sensor_signal();
   if(current_floor==-1){
@@ -72,8 +72,7 @@ elev_state_t state_running(){
 }
 
 elev_state_t state_open_door(){
-//  open_door();  //antar at dette skjer først, dvs døren lukkes før den går videre. Test dette!
-  printf ("open door");
+  printf ("open door"); //hvorfor printes ikkje dette??
   delete_orders_at_floor(current_floor);
   elev_set_door_open_lamp(1);
   timer_start();
@@ -96,15 +95,15 @@ elev_state_t state_open_door(){
 }
 
 elev_state_t state_stop_button_pressed(){
-  int has_stopped= 0; //e
+  int has_stopped= 0;
   while(elev_get_stop_signal()){
     elev_set_motor_direction(DIRN_STOP);
     elev_set_stop_lamp(1);
     delete_all_orders();
-    if(elev_get_floor_sensor_signal() != -1){ //e
-      elev_set_door_open_lamp(1);//e
+    if(elev_get_floor_sensor_signal() != -1){
+      elev_set_door_open_lamp(1);
     }
-    has_stopped = 1; //e
+    has_stopped = 1;
   }
   elev_set_stop_lamp(0);
 
@@ -116,25 +115,11 @@ if (has_stopped ==1 && elev_get_floor_sensor_signal()!=-1){
     }
     elev_set_door_open_lamp(0);
   }
-if(has_orders()){//hvis heisen ikke er ved en etasje, slår av alt lys og går i spesial tilstanden, idleAndNotAtFloor
+if(has_orders()){
   return RUNNING;
   }
 return STOP_BUTTON_PRESSED;
 }
-
-/*kjør(){
-    les hvilken etg vi skal til og sett retning med funksjonen instuksjon...
-    setter elev_set_motor_direction til direction
-    stoppe i floor
-    hopper til case åpen dør
-}*/
-
-/*case åpen dør()
-stopp når vi når etg floor
-åpne dør/lukke dør
-slett alle bestillinger i floor
-gå til ny case
-*/
 
 void FSM(){
   update_current_floor();
