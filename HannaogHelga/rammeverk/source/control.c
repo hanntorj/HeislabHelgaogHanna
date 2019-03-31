@@ -10,12 +10,15 @@ void new_order(){
   for(int i=0; i<N_FLOORS; i++){
     if ((i!=N_FLOORS-1) && elev_get_button_signal(BUTTON_CALL_UP, i)){
       queue[i][0]=1;
+      elev_set_button_lamp(BUTTON_CALL_UP, i, 1);
     }
     if ((i!=0) && elev_get_button_signal(BUTTON_CALL_DOWN, i)){
       queue[i][1]=1;
+      elev_set_button_lamp(BUTTON_CALL_DOWN, i, 1);
     }
     if (elev_get_button_signal(BUTTON_COMMAND, i)){
       queue[i][2]=1;
+      elev_set_button_lamp(BUTTON_COMMAND, i, 1);
     }
   }
 /*  for(int i=0; i<N_FLOORS; i++){
@@ -31,6 +34,9 @@ void new_order(){
 void delete_orders_at_floor(int floor){
   for (int i=0; i<3; i++) {
     queue[floor][i]=0;
+    if(!((floor==N_FLOORS-1 && i==0)||(floor==0 && i==1))){
+      elev_set_button_lamp(i, floor, 0);
+    }
   }
 }
 
@@ -59,7 +65,7 @@ int has_orders_above(int current_floor){
         if(queue[i][0] || queue[i][2]){
           return i;
         }
-    }
+      }
     for (int i=current_floor; i<N_FLOORS; i++){
         if(queue[i][1]){
           return i;
@@ -74,8 +80,8 @@ int has_orders_below(int current_floor){
         if(queue[i][1] || queue[i][2]){
           return i;
         }
-    }
-    for (int i=current_floor; i>=0; i--){
+      }
+  for (int i=current_floor; i>=0; i--){
         if(queue[i][0]){
           return i;
         }
@@ -85,21 +91,37 @@ int has_orders_below(int current_floor){
 
 int get_next_floor(int current_floor, elev_motor_direction_t direction){
     int target_floor=-1;
-    //while (has_orders()){
+    //while??
     if(has_orders()){
+  /*    if(direction==DIRN_UP){
+        if(has_orders_above(current_floor)){
+        target_floor=has_orders_above(current_floor);
+      }
+        else{
+          target_floor=has_orders_below(current_floor);
+        }
+      }*/
+
         if (direction==DIRN_UP){
             target_floor=has_orders_above(current_floor);
             if (target_floor==-1){
                 target_floor=has_orders_below(current_floor);
             }
+        }/*
+        else if(direction==DIRN_DOWN){
+          if(has_orders_below(current_floor)){
+          target_floor=has_orders_below(current_floor);
         }
-        if (direction==DIRN_DOWN){
+          else{
+            target_floor=has_orders_above(current_floor);
+          }*/
+          if(direction==DIRN_DOWN)
             target_floor=has_orders_below(current_floor);
             if (target_floor==-1){
                 target_floor=has_orders_above(current_floor);
             }
         }
-    }
+
     return target_floor;
     // if dir = opp
         // sjekke om bestilling over meg // først opp/cab deretter evt. ned

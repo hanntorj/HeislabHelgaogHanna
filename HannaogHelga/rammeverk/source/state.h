@@ -2,6 +2,8 @@
 #include "control.h"
 #include "utilities.h"
 #include <stdio.h>
+#include "timer.h"
+#include <time.h>
 
 
 typedef enum tag_elev_state{
@@ -28,4 +30,5 @@ elev_state_t state_no_orders();
 
 int go_to_target_floor();
 elev_state_t state_open_door();
+elev_state_t state_stop_button_pressed();
 void FSM();

@@ -3,7 +3,7 @@
 * @brief Dette er køkontrolløren vår.
 */
 #include "elev.h"
-#include "stdio.h"
+#include <stdio.h>
 
 
 

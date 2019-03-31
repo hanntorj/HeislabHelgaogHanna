@@ -1,4 +1,5 @@
 #include "state.h"
+#include "timer.h"
 
 elev_motor_direction_t direction;
 int current_floor;
@@ -53,33 +54,39 @@ elev_state_t state_no_orders(){
   if(elev_get_stop_signal()){
     return STOP_BUTTON_PRESSED;
   }
- if (has_orders()){
+  if (has_orders()){
       return RUNNING;
-    }
+  }
     return NO_ORDERS;
 }
 
 elev_state_t state_running(){
-  if(elev_get_stop_signal()){
-    return STOP_BUTTON_PRESSED;
-  }
-    int arrived = go_to_target_floor();
-    if(arrived){
+  int arrived = go_to_target_floor();
+  if(arrived){
       return OPEN_DOOR;
-    }
+  }
+  else if(elev_get_stop_signal()){
+      return STOP_BUTTON_PRESSED;
+  }
   return RUNNING;
 }
 
 elev_state_t state_open_door(){
-//  open_door();
-  	printf("open door");
-
- //antar at dette skjer først, dvs døren lukkes før den går videre. Test dette!
+//  open_door();  //antar at dette skjer først, dvs døren lukkes før den går videre. Test dette!
+  printf ("open door");
   delete_orders_at_floor(current_floor);
-  if(elev_get_stop_signal()){
-    return  STOP_BUTTON_PRESSED;
+  elev_set_door_open_lamp(1);
+  timer_start();
+  while(timer_end()==1){
+    elev_set_door_open_lamp(1);
+    new_order();
+    if(elev_get_stop_signal()){
+      return STOP_BUTTON_PRESSED;
+    }
   }
-  else if(has_orders()){
+  elev_set_door_open_lamp(0);
+
+ if(has_orders()){
     return  RUNNING;
     }
   else if(!has_orders()){
@@ -88,13 +95,39 @@ elev_state_t state_open_door(){
   return OPEN_DOOR;
 }
 
+elev_state_t state_stop_button_pressed(){
+  int has_stopped= 0; //e
+  while(elev_get_stop_signal()){
+    elev_set_motor_direction(DIRN_STOP);
+    elev_set_stop_lamp(1);
+    delete_all_orders();
+    if(elev_get_floor_sensor_signal() != -1){ //e
+      elev_set_door_open_lamp(1);//e
+    }
+    has_stopped = 1; //e
+  }
+  elev_set_stop_lamp(0);
+
+if (has_stopped ==1 && elev_get_floor_sensor_signal()!=-1){
+   elev_set_door_open_lamp(1);
+    timer_start();
+    while(timer_end()==1){
+      elev_set_door_open_lamp(1);
+    }
+    elev_set_door_open_lamp(0);
+  }
+if(has_orders()){//hvis heisen ikke er ved en etasje, slår av alt lys og går i spesial tilstanden, idleAndNotAtFloor
+  return RUNNING;
+  }
+return STOP_BUTTON_PRESSED;
+}
+
 /*kjør(){
     les hvilken etg vi skal til og sett retning med funksjonen instuksjon...
     setter elev_set_motor_direction til direction
     stoppe i floor
     hopper til case åpen dør
 }*/
-
 
 /*case åpen dør()
 stopp når vi når etg floor
@@ -106,11 +139,8 @@ gå til ny case
 void FSM(){
   update_current_floor();
   new_order();
-//  printf("\n %d \n",state);
   switch(state){
-
     case INIT:
-    //må lage noe som ignorerer nye forsøk på bestillinger
       state = state_init();
       break;
     case NO_ORDERS:
@@ -121,21 +151,11 @@ void FSM(){
       state = state_running();
       break;
     case OPEN_DOOR:
-    printf("%d \n", state);
+      printf("open door");
       state = state_open_door();
       break;
     case STOP_BUTTON_PRESSED:
-    printf("stop button pressed");
-  /*  elev_set_motor_direction(DIRN_STOP);
-      while(elev_get_stop_signal){
-        delete_all_orders();//køen slettes
-        if(get_current_floor!=-1){//sjekk om i etg, isåfall åpen dør konstant
-          stop_button_while_in_floor();
-      }
-      //gå til neste state
-      if(new_order()){
-        state=RUNNING;
-      }*/
+      state = state_stop_button_pressed();
       break;
-}
-}
+    }
+  }
