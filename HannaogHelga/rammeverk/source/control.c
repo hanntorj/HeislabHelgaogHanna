@@ -66,7 +66,7 @@ int has_orders_above(int current_floor){
           return i;
         }
       }
-    for (int i=current_floor; i<N_FLOORS; i++){
+    for (int i=N_FLOORS-1; i>=current_floor; i--){
         if(queue[i][1]){
           return i;
         }
@@ -81,7 +81,7 @@ int has_orders_below(int current_floor){
           return i;
         }
       }
-  for (int i=current_floor; i>=0; i--){
+  for (int i=0; i<current_floor; i++){
         if(queue[i][0]){
           return i;
         }
