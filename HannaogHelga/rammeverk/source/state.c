@@ -11,9 +11,11 @@ elev_state_t state = INIT;
 }*/
 
 void update_current_floor(){
-    current_floor = elev_get_floor_sensor_signal();
+    if (elev_get_floor_sensor_signal()!=-1){
+        current_floor = elev_get_floor_sensor_signal();
+        }
     if(current_floor!=-1){
-      elev_set_floor_indicator(current_floor);
+        elev_set_floor_indicator(current_floor);
     }
 }
 /*
@@ -72,12 +74,10 @@ elev_state_t state_running(){
 }
 
 elev_state_t state_open_door(){
-  printf ("open door"); //hvorfor printes ikkje dette??
-  delete_orders_at_floor(current_floor);
-  elev_set_door_open_lamp(1);
   timer_start();
   while(timer_end()==1){
     elev_set_door_open_lamp(1);
+    delete_orders_at_floor(current_floor);
     new_order();
     if(elev_get_stop_signal()){
       return STOP_BUTTON_PRESSED;

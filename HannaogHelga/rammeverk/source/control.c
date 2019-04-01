@@ -91,45 +91,28 @@ int has_orders_below(int current_floor){
 
 int get_next_floor(int current_floor, elev_motor_direction_t direction){
     int target_floor=-1;
-    //while??
     if(has_orders()){
-  /*    if(direction==DIRN_UP){
-        if(has_orders_above(current_floor)){
-        target_floor=has_orders_above(current_floor);
-      }
-        else{
-          target_floor=has_orders_below(current_floor);
-        }
-      }*/
-
         if (direction==DIRN_UP){
             target_floor=has_orders_above(current_floor);
             if (target_floor==-1){
                 target_floor=has_orders_below(current_floor);
             }
-        }/*
-        else if(direction==DIRN_DOWN){
-          if(has_orders_below(current_floor)){
-          target_floor=has_orders_below(current_floor);
         }
-          else{
-            target_floor=has_orders_above(current_floor);
-          }*/
-          if(direction==DIRN_DOWN)
+          if(direction==DIRN_DOWN){
             target_floor=has_orders_below(current_floor);
             if (target_floor==-1){
                 target_floor=has_orders_above(current_floor);
             }
         }
-
+    }
     return target_floor;
 }
 
 elev_motor_direction_t get_next_direction(int current_floor, int target_floor){
-    if(target_floor<current_floor){
-        return DIRN_DOWN;
+        if(target_floor<current_floor){
+            return DIRN_DOWN;
+        }
+        else {
+            return DIRN_UP;
+        }
     }
-    else{
-        return DIRN_UP;
-    }
-}

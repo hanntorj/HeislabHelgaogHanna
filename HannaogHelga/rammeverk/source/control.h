@@ -58,7 +58,7 @@ int get_next_floor(int current_floor, elev_motor_direction_t direction);
 * @brief Tells the elevator which direction to go next.
 * @param current_floor The floor the elevator is located at.
 * @param target_floor The next floor the elevator is going to.
-* @return next direction for the elevator (up/down). 
+* @return next direction for the elevator (up/down).
 */
 elev_motor_direction_t get_next_direction(int current_floor, int target_floor);
 

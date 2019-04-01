@@ -13,7 +13,8 @@ int timer_end(){
     time_spent = (double)(end - begin)/CLOCKS_PER_SEC;
     if(time_spent >= sec){
         return 0;
-    }else{
+    }
+    else{
         return 1;
     }
 }

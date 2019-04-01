@@ -1,8 +1,8 @@
 /**
 * @brief Switches between the different states of the elevator.
 */
-#ifndef TIMER_H
-#define TIMER_H
+#ifndef STATE_H
+#define STATE_H
 
 #include "elev.h"
 #include "control.h"
