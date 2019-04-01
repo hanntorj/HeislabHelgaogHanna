@@ -123,14 +123,6 @@ int get_next_floor(int current_floor, elev_motor_direction_t direction){
         }
 
     return target_floor;
-    // if dir = opp
-        // sjekke om bestilling over meg // først opp/cab deretter evt. ned
-        // sjekke om bestilling under meg // først ned/cab derretter evt. opp
-
-    // if dir = ned
-        // sjekke om bestilling under meg // først ned/cab derretter evt. opp
-        // sjekke om bestilling over meg // først opp/cab deretter evt. ned
-    //
 }
 
 elev_motor_direction_t get_next_direction(int current_floor, int target_floor){
