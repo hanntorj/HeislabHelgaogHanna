@@ -62,6 +62,12 @@ int get_next_floor(int current_floor, elev_motor_direction_t direction);
 */
 elev_motor_direction_t get_next_direction(int current_floor, int target_floor);
 
+/**
+* @brief Checks if the elevator should stop at the current floor.
+* @param current_floor The floor the elevator is located at.
+* @param direction The direction the elevator has (up/down).
+*return 1 if it should stop at the floor, 0 if not. 
+*/
 int should_I_stop(int current_floor, elev_motor_direction_t direction);
 
 #endif

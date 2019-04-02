@@ -33,11 +33,6 @@ void set_direction(elev_motor_direction_t direction_rhs);*/
 */
 void update_current_floor();
 
-/**
-* @brief Transports the elevator to the prioritized floor in queue.
-* @return 1 if the elevator has arrived at the floor, 0 if not.
-*/
-int go_to_target_floor();
 
 /**
 * @brief Tells the elevator what to do when initializing.
@@ -51,6 +46,10 @@ elev_state_t state_init();
 */
 elev_state_t state_no_orders();
 
+/**
+* @brief Handles the elevator while running.
+* @return The elevator's next state.
+*/
 elev_state_t state_running();
 
 /**
@@ -60,7 +59,7 @@ elev_state_t state_running();
 elev_state_t state_open_door();
 
 /**
-* @brief Handles the elevator when stop button is pressed.
+* @brief Handles the elevator while stop button is pressed.
 * @return The elevator's next state.
 */
 elev_state_t state_stop_button_pressed();
