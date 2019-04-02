@@ -7,8 +7,10 @@ elev_state_t state = INIT;
 
 
 void update_current_floor(){
-  if (elev_get_floor_sensor_signal() != -1){
+  if(elev_get_floor_sensor_signal() != -1){
     current_floor = elev_get_floor_sensor_signal();
+  }
+  if(current_floor != -1){
     elev_set_floor_indicator(current_floor);
   }
 }
