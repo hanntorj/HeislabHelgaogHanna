@@ -30,7 +30,7 @@ void delete_all_orders();
 * @brief Checks for orders in queue.
 * @return 1 if orders in queue, 0 if not.
 */
-int has_orders(void);
+int has_orders();
 
 /**
 * @brief Checks for orders above current floor.
@@ -61,5 +61,7 @@ int get_next_floor(int current_floor, elev_motor_direction_t direction);
 * @return next direction for the elevator (up/down).
 */
 elev_motor_direction_t get_next_direction(int current_floor, int target_floor);
+
+int should_I_stop(int current_floor, elev_motor_direction_t direction);
 
 #endif

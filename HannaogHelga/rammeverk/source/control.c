@@ -109,10 +109,17 @@ int get_next_floor(int current_floor, elev_motor_direction_t direction){
 }
 
 elev_motor_direction_t get_next_direction(int current_floor, int target_floor){
-        if(target_floor<current_floor){
-            return DIRN_DOWN;
-        }
-        else {
-            return DIRN_UP;
-        }
+    if(target_floor<current_floor){
+        return DIRN_DOWN;
     }
+    else {
+        return DIRN_UP;
+    }
+}
+
+int should_I_stop(int current_floor, elev_motor_direction_t direction){
+  if(get_next_floor(current_floor, direction)==elev_get_floor_sensor_signal()){
+    return 1;
+  }
+  return 0;
+}

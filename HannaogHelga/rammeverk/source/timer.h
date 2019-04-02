@@ -11,7 +11,7 @@
 /**
 * @brief Saves the time when the funcition is called in a local variable @param begin.
 */
-void  timer_start();
+void timer_start();
 
 /**
 * @brief Sets a timer, program is still running while timer is running.

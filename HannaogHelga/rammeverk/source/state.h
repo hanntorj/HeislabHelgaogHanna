@@ -6,7 +6,6 @@
 
 #include "elev.h"
 #include "control.h"
-#include "utilities.h"
 #include <stdio.h>
 #include "timer.h"
 #include <time.h>
@@ -35,6 +34,12 @@ void set_direction(elev_motor_direction_t direction_rhs);*/
 void update_current_floor();
 
 /**
+* @brief Transports the elevator to the prioritized floor in queue.
+* @return 1 if the elevator has arrived at the floor, 0 if not.
+*/
+int go_to_target_floor();
+
+/**
 * @brief Tells the elevator what to do when initializing.
 * @return THe elevator's next state.
 */
@@ -46,11 +51,7 @@ elev_state_t state_init();
 */
 elev_state_t state_no_orders();
 
-/**
-* @brief Transports the elevator to the prioritized floor in queue.
-* @return 1 if the elevator has arrived at the floor, 0 if not.
-*/
-int go_to_target_floor();
+elev_state_t state_running();
 
 /**
 * @brief Opens the elevator door.

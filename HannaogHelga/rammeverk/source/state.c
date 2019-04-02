@@ -40,7 +40,7 @@ elev_state_t state_init(){
   elev_set_motor_direction(DIRN_STOP);
   return NO_ORDERS;
 }
-
+/*
 int go_to_target_floor(){
   int target_floor = get_next_floor(current_floor, direction);
   direction = get_next_direction(current_floor, target_floor);
@@ -50,21 +50,25 @@ int go_to_target_floor(){
     return 1;
   }
   return 0;
-}
+}*/
 
 elev_state_t state_no_orders(){
+//  elev_set_motor_direction(DIRN_STOP);
   if(elev_get_stop_signal()){
     return STOP_BUTTON_PRESSED;
   }
   if (has_orders()){
+    int target_floor= get_next_floor(current_floor, direction);
+    direction=get_next_direction(current_floor, target_floor);
+    elev_set_motor_direction(direction);
       return RUNNING;
   }
     return NO_ORDERS;
 }
 
 elev_state_t state_running(){
-  int arrived = go_to_target_floor();
-  if(arrived){
+  //int arrived = go_to_target_floor();
+  if(should_I_stop(current_floor, direction)){
       return OPEN_DOOR;
   }
   else if(elev_get_stop_signal()){
@@ -74,6 +78,7 @@ elev_state_t state_running(){
 }
 
 elev_state_t state_open_door(){
+  elev_set_motor_direction(DIRN_STOP);
   timer_start();
   while(timer_end()==1){
     elev_set_door_open_lamp(1);
@@ -86,6 +91,9 @@ elev_state_t state_open_door(){
   elev_set_door_open_lamp(0);
 
  if(has_orders()){
+   int target_floor= get_next_floor(current_floor, direction);
+   direction=get_next_direction(current_floor, target_floor);
+   elev_set_motor_direction(direction);
     return  RUNNING;
     }
   else if(!has_orders()){
@@ -116,6 +124,9 @@ if (has_stopped ==1 && elev_get_floor_sensor_signal()!=-1){
     elev_set_door_open_lamp(0);
   }
 if(has_orders()){
+  int target_floor= get_next_floor(current_floor, direction);
+  direction=get_next_direction(current_floor, target_floor);
+  elev_set_motor_direction(direction);
   return RUNNING;
   }
 return STOP_BUTTON_PRESSED;
@@ -132,7 +143,6 @@ void FSM(){
       state = state_no_orders();
       break;
     case RUNNING:
-    //printf("%d", state);
       state = state_running();
       break;
     case OPEN_DOOR:
