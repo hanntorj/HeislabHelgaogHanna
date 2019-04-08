@@ -9,7 +9,7 @@ void new_order(){
       queue[i][0] = 1;
       elev_set_button_lamp(BUTTON_CALL_UP, i, 1);
     }
-    if((i!=0) && elev_get_button_signal(BUTTON_CALL_DOWN, i)){
+    if((i != 0) && elev_get_button_signal(BUTTON_CALL_DOWN, i)){
       queue[i][1] = 1;
       elev_set_button_lamp(BUTTON_CALL_DOWN, i, 1);
     }
@@ -93,7 +93,7 @@ int get_next_floor(int current_floor, elev_motor_direction_t direction){
   return target_floor;
 }
 
-elev_motor_direction_t get_next_direction(int current_floor, int target_floor){
+elev_motor_direction_t get_next_direction(double current_floor, int target_floor){
   if(target_floor < current_floor){
     return DIRN_DOWN;
   }
