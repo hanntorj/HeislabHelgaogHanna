@@ -4,12 +4,6 @@
 #ifndef STATE_H
 #define STATE_H
 
-#include "elev.h"
-#include "control.h"
-#include <stdio.h>
-#include "timer.h"
-#include <time.h>
-
 /**
 * @brief Enum class representing the states the elevator can acquire.
 */
@@ -65,7 +59,7 @@ elev_state_t state_open_door();
 elev_state_t state_stop_button_pressed();
 
 /**
-* @brief Contains a switch between the sates the elevator acquires.
+* @brief Contains a switch between the sates the elevator can acquire.
 */
 void FSM();
 

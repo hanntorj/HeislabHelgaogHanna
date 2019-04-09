@@ -1,5 +1,7 @@
 #include "control.h"
 
+#include <stdio.h>
+
 int queue[N_FLOORS][3];
 elev_button_type_t button;
 

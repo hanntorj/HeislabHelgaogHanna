@@ -7,9 +7,6 @@
 #define CONTROL_H
 
 #include "elev.h"
-#include <stdio.h>
-
-
 /**
 * @brief Takes new orders and adds them to the queue.
 */

@@ -1,5 +1,10 @@
 #include "state.h"
 #include "timer.h"
+#include "elev.h"
+#include "control.h"
+
+#include <stdio.h>
+#include <time.h>
 
 elev_motor_direction_t direction;
 int current_floor;
@@ -16,6 +21,7 @@ void update_current_floor(){
 }
 
 elev_state_t state_init(){
+  delete_all_orders();
   current_floor = elev_get_floor_sensor_signal();
   if(current_floor == -1){
     elev_set_motor_direction(DIRN_DOWN);
