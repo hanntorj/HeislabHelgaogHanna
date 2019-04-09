@@ -7,8 +7,8 @@
 #include "channels.h"
 #include "elev.h"
 #include "io.h"
-#include <stdio.h>
 
+#include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
 

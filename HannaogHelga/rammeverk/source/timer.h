@@ -9,13 +9,13 @@
 #include <time.h>
 
 /**
-* @brief Saves the time when the funcition is called in a local variable @param begin.
+* @brief Saves the time when the funcition is called in a local variable (@p begin).
 */
 void timer_start();
 
 /**
 * @brief Sets a timer, program is still running while timer is running.
-* @return 1 if selected seconds has passed, return 0 if not.
+* @return 1 if chosen seconds has passed, return 0 if not.
 */
 int timer_end();
 

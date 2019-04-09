@@ -1,6 +1,7 @@
 /**
 * @brief Switches between the different states of the elevator.
 */
+
 #ifndef STATE_H
 #define STATE_H
 
@@ -16,21 +17,15 @@ typedef enum tag_elev_state{
   STOP_BUTTON_PRESSED /** Case when the stop button is continuously pressed*/
 } elev_state_t;
 
-
-/*elev_motor_direction_t get_direction();
-void set_direction(elev_motor_direction_t direction_rhs);*/
-
-/*int get_current_floor();*/
 /**
-* @brief Updates the local variable that represents the last floor(0-3)
+* @brief Updates the local variable that represents the last floor (0-3)
   the elevator stopped at or passed.
 */
 void update_current_floor();
 
-
 /**
 * @brief Tells the elevator what to do when initializing.
-* @return THe elevator's next state.
+* @return The elevator's next state.
 */
 elev_state_t state_init();
 
@@ -59,7 +54,7 @@ elev_state_t state_open_door();
 elev_state_t state_stop_button_pressed();
 
 /**
-* @brief Contains a switch between the sates the elevator can acquire.
+* @brief Contains a switch between the states the elevator acquires.
 */
 void FSM();
 

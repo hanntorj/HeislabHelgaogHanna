@@ -1,7 +1,7 @@
 #include "elev.h"
 #include "state.h"
-#include <stdio.h>
 
+#include <stdio.h>
 
 int main() {
   if(!elev_init()) {

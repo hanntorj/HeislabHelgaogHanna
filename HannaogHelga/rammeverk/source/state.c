@@ -1,7 +1,7 @@
+#include "control.h"
+#include "elev.h"
 #include "state.h"
 #include "timer.h"
-#include "elev.h"
-#include "control.h"
 
 #include <stdio.h>
 #include <time.h>

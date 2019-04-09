@@ -14,7 +14,7 @@ void new_order();
 
 /**
 * @brief Delete orders at a floor.
-* @param floor Floor number (0-3) to delete orders from.
+* @param floor Floor number (0-3) to delete all orders from.
 */
 void delete_orders_at_floor(int floor);
 
@@ -32,14 +32,14 @@ int has_orders();
 /**
 * @brief Checks for orders above current floor.
 * @param current_floor The floor the elevator is located at.
-* @return prioritized floor (0-3) with an order above current floor.
+* @return the next floor (0-3) the elevator should go to, must be above current floor.
 */
 int has_orders_above(int current_floor);
 
 /**
 * @brief Checks for orders below current floor.
 * @param current_floor The floor the elevator is located at.
-* @return prioritized floor (0-3) with an order below current floor.
+* @return the next floor (0-3) the elevator should go to, must be below current floor.
 */
 int has_orders_below(int current_floor);
 
@@ -60,10 +60,10 @@ int get_next_floor(int current_floor, elev_motor_direction_t direction);
 elev_motor_direction_t get_next_direction(double current_floor, int target_floor);
 
 /**
-* @brief Checks if the elevator should stop at the current floor.
+* @brief Checks if the elevator should stop at the floor it is passing.
 * @param current_floor The floor the elevator is located at.
 * @param direction The direction the elevator has (up/down).
-*return 1 if it should stop at the floor, 0 if not.
+* return 1 if it should stop at that floor, 0 if not.
 */
 int should_I_stop(int current_floor, elev_motor_direction_t direction);
 
