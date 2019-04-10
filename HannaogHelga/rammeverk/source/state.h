@@ -1,4 +1,5 @@
 /**
+* @file
 * @brief Switches between the different states of the elevator.
 */
 

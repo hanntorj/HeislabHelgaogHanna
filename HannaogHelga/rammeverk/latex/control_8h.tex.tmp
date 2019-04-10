@@ -1,0 +1,202 @@
+\hypertarget{control_8h}{}\section{source/control.h File Reference}
+\label{control_8h}\index{source/control.\+h@{source/control.\+h}}
+
+
+A control system for elevator orders.  
+
+
+{\ttfamily \#include \char`\"{}elev.\+h\char`\"{}}\\*
+Include dependency graph for control.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{control_8h_ab558a84161a0c64e01508b73d5e57e08}{new\+\_\+order} ()\hypertarget{control_8h_ab558a84161a0c64e01508b73d5e57e08}{}\label{control_8h_ab558a84161a0c64e01508b73d5e57e08}
+
+\begin{DoxyCompactList}\small\item\em Takes new orders and adds them to the queue. \end{DoxyCompactList}\item 
+void \hyperlink{control_8h_a1d136d96f61ee0f292e5ee608658ce2b}{delete\+\_\+orders\+\_\+at\+\_\+floor} (int floor)
+\begin{DoxyCompactList}\small\item\em Delete orders at a floor. \end{DoxyCompactList}\item 
+void \hyperlink{control_8h_a354673e32c970850bb1feac18c732678}{delete\+\_\+all\+\_\+orders} ()\hypertarget{control_8h_a354673e32c970850bb1feac18c732678}{}\label{control_8h_a354673e32c970850bb1feac18c732678}
+
+\begin{DoxyCompactList}\small\item\em Delete all orders in queue. \end{DoxyCompactList}\item 
+int \hyperlink{control_8h_aa3eb3a32020ba52b500bce0ce9c2d58d}{has\+\_\+orders} ()
+\begin{DoxyCompactList}\small\item\em Checks for orders in queue. \end{DoxyCompactList}\item 
+int \hyperlink{control_8h_a24d365d738c93c29626e869221a80041}{has\+\_\+orders\+\_\+above} (int current\+\_\+floor)
+\begin{DoxyCompactList}\small\item\em Checks for orders above current floor. \end{DoxyCompactList}\item 
+int \hyperlink{control_8h_acca5c434fd8e95123810c90d4e4da020}{has\+\_\+orders\+\_\+below} (int current\+\_\+floor)
+\begin{DoxyCompactList}\small\item\em Checks for orders below current floor. \end{DoxyCompactList}\item 
+int \hyperlink{control_8h_ad5fb57bc24f1b295b897522ab14d01fc}{get\+\_\+next\+\_\+floor} (int current\+\_\+floor, elev\+\_\+motor\+\_\+direction\+\_\+t direction)
+\begin{DoxyCompactList}\small\item\em Tells the elevator which floor to go to next. \end{DoxyCompactList}\item 
+elev\+\_\+motor\+\_\+direction\+\_\+t \hyperlink{control_8h_a59417883471c8009767cafe2dceeb2e5}{get\+\_\+next\+\_\+direction} (double current\+\_\+floor, int target\+\_\+floor)
+\begin{DoxyCompactList}\small\item\em Tells the elevator which direction to go next. \end{DoxyCompactList}\item 
+int \hyperlink{control_8h_a8c5fc03bd3d70a2e2112d0d07c692d52}{should\+\_\+\+I\+\_\+stop} (int current\+\_\+floor, elev\+\_\+motor\+\_\+direction\+\_\+t direction)
+\begin{DoxyCompactList}\small\item\em Checks if the elevator should stop at the floor it is passing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A control system for elevator orders. 
+
+
+
+\subsection{Function Documentation}
+\index{control.\+h@{control.\+h}!delete\+\_\+orders\+\_\+at\+\_\+floor@{delete\+\_\+orders\+\_\+at\+\_\+floor}}
+\index{delete\+\_\+orders\+\_\+at\+\_\+floor@{delete\+\_\+orders\+\_\+at\+\_\+floor}!control.\+h@{control.\+h}}
+\subsubsection[{\texorpdfstring{delete\+\_\+orders\+\_\+at\+\_\+floor(int floor)}{delete_orders_at_floor(int floor)}}]{\setlength{\rightskip}{0pt plus 5cm}void delete\+\_\+orders\+\_\+at\+\_\+floor (
+\begin{DoxyParamCaption}
+\item[{int}]{floor}
+\end{DoxyParamCaption}
+)}\hypertarget{control_8h_a1d136d96f61ee0f292e5ee608658ce2b}{}\label{control_8h_a1d136d96f61ee0f292e5ee608658ce2b}
+
+
+Delete orders at a floor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em floor} & Floor number (0-\/3) to delete all orders from. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 25 of file control.\+c.
+
+\index{control.\+h@{control.\+h}!get\+\_\+next\+\_\+direction@{get\+\_\+next\+\_\+direction}}
+\index{get\+\_\+next\+\_\+direction@{get\+\_\+next\+\_\+direction}!control.\+h@{control.\+h}}
+\subsubsection[{\texorpdfstring{get\+\_\+next\+\_\+direction(double current\+\_\+floor, int target\+\_\+floor)}{get_next_direction(double current_floor, int target_floor)}}]{\setlength{\rightskip}{0pt plus 5cm}elev\+\_\+motor\+\_\+direction\+\_\+t get\+\_\+next\+\_\+direction (
+\begin{DoxyParamCaption}
+\item[{double}]{current\+\_\+floor, }
+\item[{int}]{target\+\_\+floor}
+\end{DoxyParamCaption}
+)}\hypertarget{control_8h_a59417883471c8009767cafe2dceeb2e5}{}\label{control_8h_a59417883471c8009767cafe2dceeb2e5}
+
+
+Tells the elevator which direction to go next. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+floor} & The floor the elevator is located at. \\
+\hline
+{\em target\+\_\+floor} & The next floor the elevator is going to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+next direction for the elevator (up/down). 
+\end{DoxyReturn}
+
+
+Definition at line 96 of file control.\+c.
+
+\index{control.\+h@{control.\+h}!get\+\_\+next\+\_\+floor@{get\+\_\+next\+\_\+floor}}
+\index{get\+\_\+next\+\_\+floor@{get\+\_\+next\+\_\+floor}!control.\+h@{control.\+h}}
+\subsubsection[{\texorpdfstring{get\+\_\+next\+\_\+floor(int current\+\_\+floor, elev\+\_\+motor\+\_\+direction\+\_\+t direction)}{get_next_floor(int current_floor, elev_motor_direction_t direction)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+\_\+next\+\_\+floor (
+\begin{DoxyParamCaption}
+\item[{int}]{current\+\_\+floor, }
+\item[{elev\+\_\+motor\+\_\+direction\+\_\+t}]{direction}
+\end{DoxyParamCaption}
+)}\hypertarget{control_8h_ad5fb57bc24f1b295b897522ab14d01fc}{}\label{control_8h_ad5fb57bc24f1b295b897522ab14d01fc}
+
+
+Tells the elevator which floor to go to next. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+floor} & The floor the elevator is located at. \\
+\hline
+{\em direction} & The direction the elevator has (up/down). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0-\/3, the next floor the elevator is going to. 
+\end{DoxyReturn}
+
+
+Definition at line 79 of file control.\+c.
+
+\index{control.\+h@{control.\+h}!has\+\_\+orders@{has\+\_\+orders}}
+\index{has\+\_\+orders@{has\+\_\+orders}!control.\+h@{control.\+h}}
+\subsubsection[{\texorpdfstring{has\+\_\+orders()}{has_orders()}}]{\setlength{\rightskip}{0pt plus 5cm}int has\+\_\+orders (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{control_8h_aa3eb3a32020ba52b500bce0ce9c2d58d}{}\label{control_8h_aa3eb3a32020ba52b500bce0ce9c2d58d}
+
+
+Checks for orders in queue. 
+
+\begin{DoxyReturn}{Returns}
+1 if orders in queue, 0 if not. 
+\end{DoxyReturn}
+
+
+Definition at line 40 of file control.\+c.
+
+\index{control.\+h@{control.\+h}!has\+\_\+orders\+\_\+above@{has\+\_\+orders\+\_\+above}}
+\index{has\+\_\+orders\+\_\+above@{has\+\_\+orders\+\_\+above}!control.\+h@{control.\+h}}
+\subsubsection[{\texorpdfstring{has\+\_\+orders\+\_\+above(int current\+\_\+floor)}{has_orders_above(int current_floor)}}]{\setlength{\rightskip}{0pt plus 5cm}int has\+\_\+orders\+\_\+above (
+\begin{DoxyParamCaption}
+\item[{int}]{current\+\_\+floor}
+\end{DoxyParamCaption}
+)}\hypertarget{control_8h_a24d365d738c93c29626e869221a80041}{}\label{control_8h_a24d365d738c93c29626e869221a80041}
+
+
+Checks for orders above current floor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+floor} & The floor the elevator is located at. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the next floor (0-\/3) the elevator should go to, must be above current floor. 
+\end{DoxyReturn}
+
+
+Definition at line 51 of file control.\+c.
+
+\index{control.\+h@{control.\+h}!has\+\_\+orders\+\_\+below@{has\+\_\+orders\+\_\+below}}
+\index{has\+\_\+orders\+\_\+below@{has\+\_\+orders\+\_\+below}!control.\+h@{control.\+h}}
+\subsubsection[{\texorpdfstring{has\+\_\+orders\+\_\+below(int current\+\_\+floor)}{has_orders_below(int current_floor)}}]{\setlength{\rightskip}{0pt plus 5cm}int has\+\_\+orders\+\_\+below (
+\begin{DoxyParamCaption}
+\item[{int}]{current\+\_\+floor}
+\end{DoxyParamCaption}
+)}\hypertarget{control_8h_acca5c434fd8e95123810c90d4e4da020}{}\label{control_8h_acca5c434fd8e95123810c90d4e4da020}
+
+
+Checks for orders below current floor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+floor} & The floor the elevator is located at. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the next floor (0-\/3) the elevator should go to, must be below current floor. 
+\end{DoxyReturn}
+
+
+Definition at line 65 of file control.\+c.
+
+\index{control.\+h@{control.\+h}!should\+\_\+\+I\+\_\+stop@{should\+\_\+\+I\+\_\+stop}}
+\index{should\+\_\+\+I\+\_\+stop@{should\+\_\+\+I\+\_\+stop}!control.\+h@{control.\+h}}
+\subsubsection[{\texorpdfstring{should\+\_\+\+I\+\_\+stop(int current\+\_\+floor, elev\+\_\+motor\+\_\+direction\+\_\+t direction)}{should_I_stop(int current_floor, elev_motor_direction_t direction)}}]{\setlength{\rightskip}{0pt plus 5cm}int should\+\_\+\+I\+\_\+stop (
+\begin{DoxyParamCaption}
+\item[{int}]{current\+\_\+floor, }
+\item[{elev\+\_\+motor\+\_\+direction\+\_\+t}]{direction}
+\end{DoxyParamCaption}
+)}\hypertarget{control_8h_a8c5fc03bd3d70a2e2112d0d07c692d52}{}\label{control_8h_a8c5fc03bd3d70a2e2112d0d07c692d52}
+
+
+Checks if the elevator should stop at the floor it is passing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+floor} & The floor the elevator is located at. \\
+\hline
+{\em direction} & The direction the elevator has (up/down). return 1 if it should stop at that floor, 0 if not. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 105 of file control.\+c.
+

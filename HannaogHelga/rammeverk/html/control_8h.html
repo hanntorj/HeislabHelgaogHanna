@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Heislab: source/control.h File Reference</title>
+<title>Heis: source/control.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Heislab
+   <div id="projectname">Heis
    </div>
   </td>
  </tr>
@@ -60,6 +60,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -82,20 +83,284 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">control.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Dette er køkontrollørell vår.  
+<p>A control system for elevator orders.  
 <a href="#details">More...</a></p>
-
+<div class="textblock"><code>#include &quot;elev.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for control.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="control_8h__incl.png" border="0" usemap="#source_2control_8h" alt=""/></div>
+<map name="source_2control_8h" id="source_2control_8h">
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="control_8h__dep__incl.png" border="0" usemap="#source_2control_8hdep" alt=""/></div>
+<map name="source_2control_8hdep" id="source_2control_8hdep">
+</map>
+</div>
+</div>
 <p><a href="control_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ab558a84161a0c64e01508b73d5e57e08"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab558a84161a0c64e01508b73d5e57e08"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="control_8h.html#ab558a84161a0c64e01508b73d5e57e08">new_order</a> ()</td></tr>
+<tr class="memdesc:ab558a84161a0c64e01508b73d5e57e08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes new orders and adds them to the queue. <br /></td></tr>
+<tr class="separator:ab558a84161a0c64e01508b73d5e57e08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d136d96f61ee0f292e5ee608658ce2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="control_8h.html#a1d136d96f61ee0f292e5ee608658ce2b">delete_orders_at_floor</a> (int floor)</td></tr>
+<tr class="memdesc:a1d136d96f61ee0f292e5ee608658ce2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete orders at a floor.  <a href="#a1d136d96f61ee0f292e5ee608658ce2b">More...</a><br /></td></tr>
+<tr class="separator:a1d136d96f61ee0f292e5ee608658ce2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a354673e32c970850bb1feac18c732678"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a354673e32c970850bb1feac18c732678"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="control_8h.html#a354673e32c970850bb1feac18c732678">delete_all_orders</a> ()</td></tr>
+<tr class="memdesc:a354673e32c970850bb1feac18c732678"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete all orders in queue. <br /></td></tr>
+<tr class="separator:a354673e32c970850bb1feac18c732678"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3eb3a32020ba52b500bce0ce9c2d58d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="control_8h.html#aa3eb3a32020ba52b500bce0ce9c2d58d">has_orders</a> ()</td></tr>
+<tr class="memdesc:aa3eb3a32020ba52b500bce0ce9c2d58d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for orders in queue.  <a href="#aa3eb3a32020ba52b500bce0ce9c2d58d">More...</a><br /></td></tr>
+<tr class="separator:aa3eb3a32020ba52b500bce0ce9c2d58d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24d365d738c93c29626e869221a80041"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="control_8h.html#a24d365d738c93c29626e869221a80041">has_orders_above</a> (int current_floor)</td></tr>
+<tr class="memdesc:a24d365d738c93c29626e869221a80041"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for orders above current floor.  <a href="#a24d365d738c93c29626e869221a80041">More...</a><br /></td></tr>
+<tr class="separator:a24d365d738c93c29626e869221a80041"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acca5c434fd8e95123810c90d4e4da020"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="control_8h.html#acca5c434fd8e95123810c90d4e4da020">has_orders_below</a> (int current_floor)</td></tr>
+<tr class="memdesc:acca5c434fd8e95123810c90d4e4da020"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for orders below current floor.  <a href="#acca5c434fd8e95123810c90d4e4da020">More...</a><br /></td></tr>
+<tr class="separator:acca5c434fd8e95123810c90d4e4da020"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5fb57bc24f1b295b897522ab14d01fc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="control_8h.html#ad5fb57bc24f1b295b897522ab14d01fc">get_next_floor</a> (int current_floor, elev_motor_direction_t direction)</td></tr>
+<tr class="memdesc:ad5fb57bc24f1b295b897522ab14d01fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the elevator which floor to go to next.  <a href="#ad5fb57bc24f1b295b897522ab14d01fc">More...</a><br /></td></tr>
+<tr class="separator:ad5fb57bc24f1b295b897522ab14d01fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59417883471c8009767cafe2dceeb2e5"><td class="memItemLeft" align="right" valign="top">elev_motor_direction_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="control_8h.html#a59417883471c8009767cafe2dceeb2e5">get_next_direction</a> (double current_floor, int target_floor)</td></tr>
+<tr class="memdesc:a59417883471c8009767cafe2dceeb2e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the elevator which direction to go next.  <a href="#a59417883471c8009767cafe2dceeb2e5">More...</a><br /></td></tr>
+<tr class="separator:a59417883471c8009767cafe2dceeb2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c5fc03bd3d70a2e2112d0d07c692d52"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="control_8h.html#a8c5fc03bd3d70a2e2112d0d07c692d52">should_I_stop</a> (int current_floor, elev_motor_direction_t direction)</td></tr>
+<tr class="memdesc:a8c5fc03bd3d70a2e2112d0d07c692d52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the elevator should stop at the floor it is passing.  <a href="#a8c5fc03bd3d70a2e2112d0d07c692d52">More...</a><br /></td></tr>
+<tr class="separator:a8c5fc03bd3d70a2e2112d0d07c692d52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Dette er køkontrollørell vår. </p>
+<div class="textblock"><p>A control system for elevator orders. </p>
 
 <p>Definition in file <a class="el" href="control_8h_source.html">control.h</a>.</p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a1d136d96f61ee0f292e5ee608658ce2b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void delete_orders_at_floor </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>floor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Delete orders at a floor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">floor</td><td>Floor number (0-3) to delete all orders from. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="control_8c_source.html#l00025">25</a> of file <a class="el" href="control_8c_source.html">control.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a59417883471c8009767cafe2dceeb2e5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">elev_motor_direction_t get_next_direction </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>current_floor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>target_floor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tells the elevator which direction to go next. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">current_floor</td><td>The floor the elevator is located at. </td></tr>
+    <tr><td class="paramname">target_floor</td><td>The next floor the elevator is going to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>next direction for the elevator (up/down). </dd></dl>
+
+<p>Definition at line <a class="el" href="control_8c_source.html#l00096">96</a> of file <a class="el" href="control_8c_source.html">control.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad5fb57bc24f1b295b897522ab14d01fc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int get_next_floor </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>current_floor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elev_motor_direction_t&#160;</td>
+          <td class="paramname"><em>direction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tells the elevator which floor to go to next. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">current_floor</td><td>The floor the elevator is located at. </td></tr>
+    <tr><td class="paramname">direction</td><td>The direction the elevator has (up/down). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0-3, the next floor the elevator is going to. </dd></dl>
+
+<p>Definition at line <a class="el" href="control_8c_source.html#l00079">79</a> of file <a class="el" href="control_8c_source.html">control.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa3eb3a32020ba52b500bce0ce9c2d58d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int has_orders </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks for orders in queue. </p>
+<dl class="section return"><dt>Returns</dt><dd>1 if orders in queue, 0 if not. </dd></dl>
+
+<p>Definition at line <a class="el" href="control_8c_source.html#l00040">40</a> of file <a class="el" href="control_8c_source.html">control.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a24d365d738c93c29626e869221a80041"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int has_orders_above </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>current_floor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks for orders above current floor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">current_floor</td><td>The floor the elevator is located at. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the next floor (0-3) the elevator should go to, must be above current floor. </dd></dl>
+
+<p>Definition at line <a class="el" href="control_8c_source.html#l00051">51</a> of file <a class="el" href="control_8c_source.html">control.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acca5c434fd8e95123810c90d4e4da020"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int has_orders_below </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>current_floor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks for orders below current floor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">current_floor</td><td>The floor the elevator is located at. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the next floor (0-3) the elevator should go to, must be below current floor. </dd></dl>
+
+<p>Definition at line <a class="el" href="control_8c_source.html#l00065">65</a> of file <a class="el" href="control_8c_source.html">control.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8c5fc03bd3d70a2e2112d0d07c692d52"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int should_I_stop </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>current_floor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">elev_motor_direction_t&#160;</td>
+          <td class="paramname"><em>direction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the elevator should stop at the floor it is passing. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">current_floor</td><td>The floor the elevator is located at. </td></tr>
+    <tr><td class="paramname">direction</td><td>The direction the elevator has (up/down). return 1 if it should stop at that floor, 0 if not. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="control_8c_source.html#l00105">105</a> of file <a class="el" href="control_8c_source.html">control.c</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
