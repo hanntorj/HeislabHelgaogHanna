@@ -14,8 +14,6 @@ elev_state_t state = INIT;
 void update_current_floor(){
   if(elev_get_floor_sensor_signal() != -1){
     current_floor = elev_get_floor_sensor_signal();
-  }
-  if(current_floor != -1){
     elev_set_floor_indicator(current_floor);
   }
 }
@@ -61,7 +59,7 @@ elev_state_t state_running(){
 elev_state_t state_open_door(){
   elev_set_motor_direction(DIRN_STOP);
   timer_start();
-  while(timer_end() == 1){
+  while(!timer_end()){
     elev_set_door_open_lamp(1);
     delete_orders_at_floor(current_floor);
     new_order();
@@ -98,7 +96,7 @@ elev_state_t state_stop_button_pressed(){
   if(has_stopped == 1 && elev_get_floor_sensor_signal() != -1){
     elev_set_door_open_lamp(1);
     timer_start();
-    while(timer_end() == 1){
+    while(!timer_end()){
       if(elev_get_stop_signal()){
         elev_set_stop_lamp(1);
         delete_all_orders();

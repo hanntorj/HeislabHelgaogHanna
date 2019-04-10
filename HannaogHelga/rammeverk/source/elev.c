@@ -58,7 +58,7 @@ int elev_init(void) {
 }
 
 void elev_set_motor_direction(elev_motor_direction_t dirn) {
-    dirn = 0; //når vi bruker gdb
+    //dirn = 0; //når vi bruker gdb
     if (dirn == 0){
         io_write_analog(MOTOR, 0);
     } else if (dirn > 0) {

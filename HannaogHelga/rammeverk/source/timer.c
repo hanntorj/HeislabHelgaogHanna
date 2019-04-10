@@ -12,9 +12,9 @@ int timer_end(){
   end = clock();
   time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
   if(time_spent >= sec){
-    return 0;
+    return 1;
   }
   else{
-    return 1;
+    return 0;
   }
 }
