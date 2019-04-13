@@ -32,14 +32,14 @@ int has_orders();
 /**
 * @brief Checks for orders above current floor.
 * @param current_floor The floor the elevator is located at.
-* @return the next floor (0-3) the elevator should go to, must be above current floor.
+* @return The next floor (0-3) the elevator should go to, must be above current floor.
 */
 int has_orders_above(int current_floor);
 
 /**
 * @brief Checks for orders below current floor.
 * @param current_floor The floor the elevator is located at.
-* @return the next floor (0-3) the elevator should go to, must be below current floor.
+* @return The next floor (0-3) the elevator should go to, must be below current floor.
 */
 int has_orders_below(int current_floor);
 
@@ -55,7 +55,7 @@ int get_next_floor(int current_floor, elev_motor_direction_t direction);
 * @brief Tells the elevator which direction to go next.
 * @param current_floor The floor the elevator is located at.
 * @param target_floor The next floor the elevator is going to.
-* @return next direction for the elevator (up/down).
+* @return Next direction for the elevator (up/down).
 */
 elev_motor_direction_t get_next_direction(double current_floor, int target_floor);
 
@@ -63,7 +63,7 @@ elev_motor_direction_t get_next_direction(double current_floor, int target_floor
 * @brief Checks if the elevator should stop at the floor it is passing.
 * @param current_floor The floor the elevator is located at.
 * @param direction The direction the elevator has (up/down).
-* return 1 if it should stop at that floor, 0 if not.
+* @return 1 if it should stop at that floor, 0 if not.
 */
 int should_I_stop(int current_floor, elev_motor_direction_t direction);
 
