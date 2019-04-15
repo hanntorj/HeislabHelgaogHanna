@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['has_5forders',['has_orders',['../control_8h.html#aa3eb3a32020ba52b500bce0ce9c2d58d',1,'control.c']]],
-  ['has_5forders_5fabove',['has_orders_above',['../control_8h.html#a24d365d738c93c29626e869221a80041',1,'control.c']]],
-  ['has_5forders_5fbelow',['has_orders_below',['../control_8h.html#acca5c434fd8e95123810c90d4e4da020',1,'control.c']]]
+  ['get_5fnext_5fdirection',['get_next_direction',['../control_8h.html#a59417883471c8009767cafe2dceeb2e5',1,'control.c']]],
+  ['get_5fnext_5ffloor',['get_next_floor',['../control_8h.html#ad5fb57bc24f1b295b897522ab14d01fc',1,'control.c']]]
 ];

@@ -9,13 +9,17 @@
 /**
 * @brief Enum class representing the states the elevator can acquire.
 */
-
 typedef enum tag_elev_state{
-  INIT, /** Case when initializing the elevator.*/
-  NO_ORDERS, /** Case when the elevator is on a floor, with no orders waiting.*/
-  RUNNING, /** Case when the elevator is operating between floors.*/
-  OPEN_DOOR, /** Case when the elevator stops at a floor and opens the door.*/
-  STOP_BUTTON_PRESSED /** Case when the stop button is continuously pressed*/
+  /** Case when initializing the elevator.*/
+  INIT,
+  /** Case when the elevator is on a floor, with no orders waiting.*/
+  NO_ORDERS,
+  /** Case when the elevator is operating between floors.*/
+  RUNNING,
+  /** Case when the elevator stops at a floor and opens the door.*/
+  OPEN_DOOR,
+  /** Case when the stop button is continuously pressed.*/
+  STOP_BUTTON_PRESSED
 } elev_state_t;
 
 /**
