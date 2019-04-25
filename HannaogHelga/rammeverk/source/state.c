@@ -11,8 +11,17 @@ int current_floor;
 elev_state_t state = INIT;
 
 
-void update_current_floor(){
+/*void update_current_floor(){
   if(elev_get_floor_sensor_signal() != -1){
+    current_floor = elev_get_floor_sensor_signal();
+    elev_set_floor_indicator(current_floor);
+  }
+}*/
+//endring gjort av studass
+
+void update_current_floor(){
+	int floor = elev_get_floor_sensor_signal();
+  if(floor != -1){
     current_floor = elev_get_floor_sensor_signal();
     elev_set_floor_indicator(current_floor);
   }
